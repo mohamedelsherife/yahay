@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <title>Student page</title>
 </head>
@@ -12,7 +13,9 @@
         <button type="submit">Search</button>
         <a href="{{ route('students.index') }}">Reset</a>
     </form>
-
+    <a href="{{ route('students.create') }}" class="btn btn-add">
+    <i class="fa-solid fa-plus"></i> Add Student
+</a>
     <table>
         <thead>
             <tr>
@@ -32,8 +35,11 @@
                         <form action="{{ route('students.destroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Delete</button>
+                            <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
+                        <a href="{{ route('students.edit', $student->id) }}">
+                        <button type="button"><i class="fa-solid fa-pen"></i></button>
+                        </a>
                     </td>
                 </tr>
             @endforeach

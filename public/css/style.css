@@ -1,47 +1,383 @@
+/* ========== المتغيرات ========== */
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --success: #16a34a;
+    --success-dark: #15803d;
+    --warning: #f59e0b;
+    --warning-dark: #d97706;
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+
+    --bg: #f1f5f9;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text-muted: #64748b;
+
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+/* ========== الأساسيات ========== */
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-    background: #f4f6f9;
-    color: #333;
     margin: 0;
-    padding: 30px;
+    padding: 40px 20px;
+    font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 25px;
+    color: var(--text);
+    font-weight: 700;
+    margin: 0 0 28px;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 22px; }
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ========== الجدول ========== */
+.table-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
 }
 
 table {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
+    background: var(--surface);
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
+}
+
+.table-wrapper table {
+    box-shadow: none;
+    border-radius: 0;
 }
 
 thead {
-    background: #3498db;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
 }
 
-th, td {
+th {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+td {
     padding: 14px 16px;
+    color: var(--text);
+}
+
+th, td {
     text-align: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr {
+    transition: background 0.15s;
 }
 
 tbody tr:nth-child(even) {
-    background: #f9fbfd;
+    background: #f8fafc;
 }
 
 tbody tr:hover {
-    background: #eaf4fc;
+    background: #eef2ff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========== البحث والفورمات ========== */
+form {
+    max-width: 520px;
+    margin: 0 auto 28px;
+    padding: 28px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text);
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0 0 0 6px;
+    vertical-align: middle;
+    accent-color: var(--primary);
+}
+
+/* الـ label بجانب radio/checkbox */
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    margin: 0 4px 0 14px;
+    font-weight: 500;
+}
+
+/* رابط Reset داخل فورم البحث */
+form a:not(.btn) {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+form a:not(.btn):hover {
+    color: var(--primary);
+}
+
+/* ========== الأزرار ========== */
+button,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 22px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover,
+.btn:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.97);
+}
+
+button:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid rgba(79, 70, 229, 0.4);
+    outline-offset: 2px;
+}
+
+form > button[type="submit"] {
+    width: 100%;
+}
+
+/* ========== أزرار داخل الجدول ========== */
+td form {
+    display: inline-block;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+td button,
+td .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+td a button {
+    background: var(--warning);
+}
+
+td a button:hover {
+    background: var(--warning-dark);
+    box-shadow: none;
+}
+
+td form button[type="submit"] {
+    width: auto;
+    background: var(--danger);
+}
+
+td form button[type="submit"]:hover {
+    background: var(--danger-dark);
+    box-shadow: none;
+}
+
+td a {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+/* زر الإضافة */
+.btn-add {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 24px;
+    background: var(--success);
+}
+
+.btn-add:hover {
+    background: var(--success-dark);
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+/* ========== شارات الحالة (اختياري) ========== */
+.badge {
+    display: inline-block;
+    padding: 3px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.badge-yes {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.badge-no {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+/* ========== حالة فارغة (اختياري) ========== */
+.empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* ========== الرسائل والأخطاء ========== */
+.alert-success,
+.alert-error {
+    max-width: 1000px;
+    margin: 0 auto 24px;
+    padding: 14px 20px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid;
+}
+
+.alert-success {
+    color: #166534;
+    background: #dcfce7;
+    border-color: #bbf7d0;
+}
+
+.alert-error {
+    color: #991b1b;
+    background: #fee2e2;
+    border-color: #fecaca;
+}
+
+.error {
+    margin: -12px 0 16px;
+    font-size: 13px;
+    color: var(--danger-dark);
+}
+
+/* ========== جوال ========== */
+@media (max-width: 640px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    h1 { font-size: 22px; }
+
+    form {
+        padding: 20px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    td button,
+    td .btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
 }

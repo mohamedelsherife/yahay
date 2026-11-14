@@ -32,5 +32,24 @@ class StudentController extends Controller
         $student->delete();
 
         return redirect('/');
-    }
+    } 
+ public function edit($id){
+    $student = Student::findOrFail($id);
+    return view('Students.edit', compact('student'));
+}
+
+public function update(Request $request, $id){
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email'
+    ]);
+
+    $student = Student::findOrFail($id);
+    $student->update([
+        'name' => $request->name,
+        'email' => $request->email
+    ]);
+
+    return redirect()->route('students.index')->with('success', 'Student updated successfully');
+}
 }
