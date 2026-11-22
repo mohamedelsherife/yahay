@@ -2,6 +2,7 @@
 :root {
     --primary: #4f46e5;
     --primary-dark: #4338ca;
+    --primary-soft: #eef2ff;
     --success: #16a34a;
     --success-dark: #15803d;
     --warning: #f59e0b;
@@ -111,14 +112,14 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background: #eef2ff;
+    background: var(--primary-soft);
 }
 
 tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* ========== البحث والفورمات ========== */
+/* ========== الفورمات ========== */
 form {
     max-width: 520px;
     margin: 0 auto 28px;
@@ -184,7 +185,6 @@ input[type="checkbox"] {
     accent-color: var(--primary);
 }
 
-/* الـ label بجانب radio/checkbox */
 input[type="radio"] + label,
 input[type="checkbox"] + label {
     display: inline-block;
@@ -192,7 +192,6 @@ input[type="checkbox"] + label {
     font-weight: 500;
 }
 
-/* رابط Reset داخل فورم البحث */
 form a:not(.btn) {
     display: inline-block;
     margin-top: 12px;
@@ -243,8 +242,29 @@ button:focus-visible,
     outline-offset: 2px;
 }
 
+button:disabled {
+    background: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
 form > button[type="submit"] {
     width: 100%;
+}
+
+/* زر ثانوي */
+.btn-secondary {
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    color: var(--primary);
+    background: var(--primary-soft);
+    box-shadow: none;
 }
 
 /* ========== أزرار داخل الجدول ========== */
@@ -289,7 +309,6 @@ td a {
     margin-left: 4px;
 }
 
-/* زر الإضافة */
 .btn-add {
     display: flex;
     width: fit-content;
@@ -302,7 +321,7 @@ td a {
     box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
 }
 
-/* ========== شارات الحالة (اختياري) ========== */
+/* ========== شارات الحالة ========== */
 .badge {
     display: inline-block;
     padding: 3px 12px;
@@ -311,21 +330,18 @@ td a {
     border-radius: 999px;
 }
 
-.badge-yes {
-    color: #166534;
-    background: #dcfce7;
-}
+.badge-yes { color: #166534; background: #dcfce7; }
+.badge-no  { color: #991b1b; background: #fee2e2; }
 
-.badge-no {
-    color: #991b1b;
-    background: #fee2e2;
-}
-
-/* ========== حالة فارغة (اختياري) ========== */
+/* ========== حالة فارغة ========== */
 .empty-state {
     padding: 40px 20px;
     text-align: center;
     color: var(--text-muted);
+}
+
+.empty-state p {
+    margin: 0 0 12px;
 }
 
 /* ========== الرسائل والأخطاء ========== */
@@ -352,10 +368,267 @@ td a {
     border-color: #fecaca;
 }
 
+.alert-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .error {
     margin: -12px 0 16px;
     font-size: 13px;
     color: var(--danger-dark);
+}
+
+.field-error {
+    margin: -10px 0 16px;
+    font-size: 13px;
+    color: var(--danger-dark);
+}
+
+/* =====================================================
+   صفحات التسجيل (Enrollments)
+   ===================================================== */
+
+/* ----- الحاويات ----- */
+.enrollment-form-container {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.page-header,
+.enrollment-course-list {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.enrollment-form-container .page-header,
+.enrollment-form-container .alert-success,
+.enrollment-form-container .alert-error {
+    max-width: none;
+}
+
+/* ----- رأس الصفحة ----- */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.page-header h1 {
+    margin: 0 0 6px;
+    text-align: left;
+}
+
+.eyebrow {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.back-link:hover {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* ----- البطاقات ----- */
+.panel {
+    margin-bottom: 24px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+.table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.table-heading h2 {
+    margin: 0;
+    font-size: 20px;
+    text-align: left;
+}
+
+.field-hint {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.count {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+    border-radius: 999px;
+}
+
+/* ----- الجدول داخل البطاقة ----- */
+.table-scroll {
+    overflow-x: auto;
+}
+
+.panel table {
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.panel th,
+.panel td {
+    text-align: left;
+}
+
+.student-id {
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.student-name {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.student-email {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ----- فورم الإضافة ----- */
+.form-panel {
+    padding: 28px 32px;
+}
+
+.form-panel form {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.field {
+    margin-bottom: 22px;
+}
+
+.field select {
+    margin-bottom: 6px;
+}
+
+.enrollment-students {
+    margin: 0 0 24px;
+    padding: 0;
+    border: none;
+}
+
+.enrollment-students legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.enrollment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 340px;
+    margin-top: 12px;
+    padding: 8px;
+    overflow-y: auto;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.enrollment-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 10px 14px;
+    font-weight: 400;
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.enrollment-option:hover {
+    background: var(--primary-soft);
+    border-color: #c7d2fe;
+}
+
+.enrollment-option:has(input:checked) {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+}
+
+.enrollment-option input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.enrollment-person {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.enrollment-person .student-email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.enrollment-options .empty-state {
+    padding: 24px 12px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 /* ========== جوال ========== */
@@ -379,5 +652,19 @@ td a {
     td .btn {
         padding: 6px 10px;
         font-size: 13px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+    .table-heading,
+    .form-panel {
+        padding: 16px;
+    }
+
+    .form-actions .btn,
+    .form-actions button {
+        flex: 1;
     }
 }

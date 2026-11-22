@@ -13,5 +13,10 @@ class Course extends Model
     'course_description',
     'course_semester',
     'course_prereq',
+    'file',
 ];
+   public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }

@@ -31,6 +31,7 @@
                 <th>Description</th>
                 <th>Semester</th>
                 <th>Pre-reqs</th>
+                <th>File</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -45,7 +46,16 @@
                     <td>{{ $course->course_semester }}</td>
                     <td>{{ $course->course_prereq ? 'Yes' : 'No' }}</td>
                     <td>
-            
+                        @if($course->file)
+                            <a href="{{ asset('storage/courses/' . $course->file) }}" target="_blank">
+                                <i class="fa-solid fa-file-arrow-down"></i> Download
+                            </a>
+                        @else
+                            —
+                        @endif
+                    </td>
+                    <td>
+
                         <form action="{{ route('courses.destroy', $course->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')

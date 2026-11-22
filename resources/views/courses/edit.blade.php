@@ -10,7 +10,15 @@
 <body>
     <h2>edit course</h2>
 
-    <form action="{{ route('courses.update', $course->id) }}" method="POST">
+    @if ($errors->any())
+        <ul class="error">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+    <form action="{{ route('courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -43,6 +51,13 @@
         <input type="radio" id="no" name="course_prereq" value="0"
             {{ old('course_prereq', $course->course_prereq) == 0 ? 'checked' : '' }}>
         <label for="no">no</label>
+        <br><br>
+
+        <label for="file">course file</label>
+        @if($course->file)
+            <a href="{{ asset('storage/courses/' . $course->file) }}" target="_blank">current file</a>
+        @endif
+        <input type="file" name="file" id="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.jpg,.jpeg,.png">
         <br><br>
 
         <button type="submit"><i class="fa-solid fa-floppy-disk"></i> update course</button>

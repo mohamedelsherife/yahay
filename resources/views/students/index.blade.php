@@ -20,6 +20,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>image</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>operations</th>
@@ -29,6 +30,13 @@
             @foreach($students as $student)
                 <tr>
                     <td>{{ $student->id }}</td>
+                    <td>
+                        @if($student->image)
+                        <img src="{{ asset('storage/students/' . $student->image) }}" alt="student image" width="70" height="70">
+                        @else
+                        no image
+                        @endif
+                    </td>
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>
